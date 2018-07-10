@@ -1,0 +1,502 @@
+$def with (resultList,weeks,duration_data,room,week)
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Timetable</title>	
+	<!-- bootstrap -->
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	 
+
+</head>
+<body>
+	
+
+	<div class="container-fluid">
+
+		<div class="row">
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">
+							<img src="/static/images/logo_25x25.png">
+						</a>
+					</div>
+
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+							<li class="timetable"><a href="/timetable/T8-305/1">Timetable</a></li>
+
+
+							<li class="orderlist"><a href="/orderlist"> Order</a></li>
+
+
+
+							<li class="adduser"><a href="/user"> User</a></li>
+							<li class="week"><a href="/week"> Week</a></li>
+
+
+
+						</ul>
+
+						<ul class="nav navbar-nav navbar-right">
+
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> $context.get('uname')
+
+								 <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="/login">Login</a></li>
+									<li><a href="/logout">Logout</a></li>
+
+
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+		</div>
+	</div>
+
+
+	<div class="container main">
+
+		
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit course</h4>
+            </div>
+            <form class="form-horizontal" role="form"  method="POST">
+                <input type='hidden' name='csrfmiddlewaretoken' value='c5Evacz7d427696pRglm5fVmYXgICFdkhTTLbpPfea0iLznyWlk7iOLQM5f1kHGj' />
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="Course" class="col-sm-2 control-label">Course  :</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="course" class="form-control" id="course" placeholder="Python Programming "  />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Teacher" class="col-sm-2 control-label">Teacher  :</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="teacher" class="form-control" id="teacher" placeholder="2010jing" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Email" class="col-sm-2 control-label">Email  :</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="email" class="form-control" id="email" placeholder="example@uic.edu.hk" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <input type="hidden" name="room" class="form-control" id="room" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <input type="hidden" name="week" class="form-control" id="week" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <input type="hidden" name="row" class="form-control" id="row" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <input type="hidden" name="col" class="form-control" id="col" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <input type="hidden" name="timetable_id" class="form-control" id="timetable_id" value="0" />
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+    
+    	<div class="row">
+
+    		<div class="col-md-6">
+    			<h3>Week: $week   </h1>
+				<h3>Date: $duration_data</h2>
+				<h3>Room: $room</h2>
+
+    		</div>
+
+    		<div class="col-md-6">
+    			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  Other week <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						$if weeks:
+							$for item in weeks:
+								<li><a href="/timetable/$room/$item.week_num">week $item.week_num</a></li>
+
+						
+							
+
+						
+						
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  Other Room <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						
+						<li><a href="/timetable/T8-305/$week">T8-305</a></li>
+						<li><a href="/timetable/T8-306/$week">T8-306</a></li>
+						
+						
+					</ul>
+				</li>
+			</ul>
+
+    		</div>
+
+    	 	
+
+    	</div>
+    	<hr>
+		<table class="table table-hover table-bordered" id="timetable">
+			
+			<thead>
+				<tr>
+					<th>
+						Time / Day 
+					</th>
+					
+					<th>Monday</th>
+				
+					<th>Tuesday</th>
+				
+					<th>Wednesday</th>
+				
+					<th>Thursday</th>
+				
+					<th>Friday</th>
+				
+					
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<th>08:00 - 08:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+
+				</tr>
+
+				<tr>
+					<th>09:00 - 09:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				
+
+				</tr>
+
+				<tr>
+					<th>10:00 - 10:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+
+				</tr>
+
+				<tr>
+					<th>11:00 - 11:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+
+				</tr>
+
+				<tr>
+					<th>12:00 - 12:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+
+				</tr>
+
+				<tr>
+					<th>13:00 - 13:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+
+				</tr>
+
+				<tr>
+					<th>14:00 - 14:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+				</tr>
+
+				<tr>
+					<th>15:00 - 15:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+				</tr>
+
+				<tr>
+					<th>16:00 - 16:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+
+				</tr>
+
+				<tr>
+					<th>17:00 - 17:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+
+				</tr>
+
+				<tr>
+					<th>18:00 - 18:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+				</tr>
+
+				<tr>
+					<th>19:00 - 19:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+
+				</tr>
+
+				<tr>
+					<th>20:00 - 20:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+
+				</tr>
+
+				<tr>
+					<th>21:00 - 21:50</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					
+
+				</tr>
+
+				
+
+			</tbody>
+
+		</table>
+
+
+
+
+
+
+		
+	</div>
+	 <footer class="footer navbar-fixed-bottom "> 
+    <div class="container">
+    	 
+    	  <li class="list-group-item list-group-item-success">admin: 2010jing</li>
+
+    </div>
+</footer>
+
+</body>
+
+ 
+
+<script type="text/javascript">
+
+	
+// render data test data
+    // var resultList = [{"cell_row": 0, "cell_content": "cc", "week_num": 1, "cell_col": 1, "lab_room": "T8-305", "status": 1, "id": 42}, {"cell_row": 0, "cell_content": "aa", "week_num": 1, "cell_col": 2, "lab_room": "T8-305", "status": 1, "id": 44}, {"cell_row": 1, "cell_content": "BBb", "week_num": 1, "cell_col": 1, "lab_room": "T8-305", "status": 2, "id": 46}];
+    var resultList = $:resultList; 
+    //var resultList = escape2Html(a);
+    console.table(resultList)
+    var room = "$room";
+    var week = "$week";
+    var uemail = "$context.get('uemail')";
+    var uname = "$context.get('uname')";
+
+    // console.table(resultList)
+    // var data_json = JSON.stringify(resultList)
+    // console.table(data_json)
+    var temp;
+    for(var i in resultList){
+        // console.log(resultList[i])
+        temp = resultList[i]
+        // console.log(temp.cell_col)
+        $$("#timetable tr:gt(0):eq("+temp.cell_row+") td:eq("+temp.cell_col+")").text(temp.cell_content);
+        console.log(temp.status);
+         $$("#timetable tr:gt(0):eq("+temp.cell_row+") td:eq("+temp.cell_col+")").attr("timetable_id",temp.id);
+
+        // set td background-color
+        if(temp.status == 1){
+            // $$("#timetable tr:gt(0):eq("+temp.cell_row+") td:eq("+temp.cell_col+")").css("background-color", "#51a351");
+            $$("#timetable tr:gt(0):eq("+temp.cell_row+") td:eq("+temp.cell_col+")").addClass("btn-success");
+        }else{
+            $$("#timetable tr:gt(0):eq("+temp.cell_row+") td:eq("+temp.cell_col+")").addClass("btn-warning");
+        }
+    }
+
+    // nav active
+    $$('.nav li').removeClass("active");
+    // $$('.nav li').eq(1).addClass('active');
+    $$('.timetable').addClass('active');
+
+    // td Click 
+    $$('#timetable td').attr('data-toggle','modal');
+    $$('#timetable td').attr('data-target','#myModal');
+
+    
+
+    
+    	$$(function(){
+            // set value to modal
+
+            $$("#timetable td").click(function(){
+
+                var course = $$(this).text().trim();
+                var row = $$(this).parent().parent().find("tr").index($$(this).parent());
+                // console.log(row)
+                var col = $$(this).parent().find("td").index($$(this));
+                
+
+                // alert("timetable_id:" + timetable_id)
+
+                
+                 // ajax check if this record is this user's
+                var flag = true;
+                var timetable_id = 0;
+                if(course !== ""){
+                	timetable_id = $$(this).attr("timetable_id");
+                	return false;
+                	
+                }
+
+                
+                
+				$$('#teacher').val(uname);
+                $$('#email').val(uemail);
+                $$('#room').val(room);
+                $$('#week').val(week);
+                $$('#row').val(row);
+                $$('#col').val(col);
+                $$('#course').val(course);
+                $$('#timetable_id').val(timetable_id);
+
+
+                
+
+                
+
+                //alert($$(this).parent().attr("id"));
+                //alert("table td :"+$$(this).text());
+                    
+            });
+        })
+
+
+    
+
+
+    
+
+	
+
+
+</script>
+
+
+
+
+</html>

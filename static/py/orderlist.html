@@ -1,0 +1,207 @@
+$def with (resultList)
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Order</title>	
+	<!-- bootstrap -->
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	 
+
+</head>
+<body>
+	<!-- navigation  -->
+	
+	<div class="container-fluid">
+
+		<div class="row">
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">
+							<img src="/static/images/logo_25x25.png">
+						</a>
+					</div>
+
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+							<li class="timetable"><a href="/timetable/T8-305/1">Timetable</a></li>
+
+
+							<li class="orderlist"><a href="/orderlist"> Order</a></li>
+
+
+
+							<li class="adduser"><a href="/user"> User</a></li>
+							<li class="week"><a href="/week"> Week</a></li>
+
+
+
+						</ul>
+
+						<ul class="nav navbar-nav navbar-right">
+
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> $context.get('uname') <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="/login">Login</a></li>
+									<li><a href="/logout">Logout</a></li>
+
+
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+		</div>
+	</div>
+
+	<div class="container main">
+
+		
+
+
+		<!-- timetable -->
+		
+
+
+		<div class="row">
+			
+    		
+
+
+
+    		
+
+
+    	</div>
+
+
+		<table class="table table-hover table-bordered" id="orderlist">
+
+			<thead>
+				<tr>
+					<th>
+						week
+					</th>
+
+					<th>Day</th>
+					<th>Room</th>
+
+					<th>Time</th>
+					<th>Who</th>
+
+					<th>Email</th>
+
+					<th>Apply Date</th>
+					<th>Status</th>
+
+					<th>Action</th>
+
+					<!-- <th>Saterday</th> -->
+
+					<!-- <th>Sunday</th> -->
+				</tr>
+			</thead>
+				$for item in resultList:
+
+				
+					<tr>
+						<td style="display:none" class="order_id">$item.rid</td>
+						<td style="display:none" class="timetable_id">$item.timetable_id</td>
+						<td> $item.week_num </td>
+						
+							<td> $(item.cell_col+1) </td>
+						
+
+						<td>$item.lab_room</td>
+
+						<td> $(item.cell_row+8) :00 -- $(item.cell_row+8) :50</td>
+						<td> $item.teacher_name </td>
+						<td> $item.uic_email </td>
+						<td> $item.apply_date </td>
+							$if item.status == 2:
+								<td>
+									<span class="label label-info">Not Confirm</span>
+ 								</td>
+ 							$elif item.status == 1:
+ 								<td>
+									<span class="label label-success">Approve</span>
+ 								</td>
+							$elif item.status == 0:
+								<td>
+									<span class="label label-warning">Reject</span>
+ 								</td>
+						<td> 
+							<a href="/dealorder/remove/$item.rid" type="button" class="btn btn-danger remove">Remove</a>
+
+							$if context.get('uname') == 'admin':
+								<a href="/dealorder/reject/$item.rid" type="button" class="btn btn-warning reject">Reject</a>
+								<a href="/dealorder/approve/$item.rid" type="button" class="btn btn-success approve">Approve</a>
+							
+
+							
+
+						</td>
+					</tr>
+				
+					
+				
+
+
+			<tbody>
+
+			</tbody>
+		</table>
+
+
+
+		
+	</div>
+	<!-- footer  -->
+	 <footer class="footer navbar-fixed-bottom "> 
+<!--<footer class="footer navbar "> -->
+    <div class="container">
+    	 
+    	  <li class="list-group-item list-group-item-success">admin: 2010jing</li>
+
+    </div>
+</footer>
+
+</body>
+
+ 
+
+<script type="text/javascript">
+    // nav active
+    $$('.nav li').removeClass("active");
+    // $$('.nav li').eq(1).addClass('active');
+    $$('.orderlist').addClass('active');
+
+    
+
+	
+	
+
+
+
+	
+
+</script>
+
+
+
+</html>

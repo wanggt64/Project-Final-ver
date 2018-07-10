@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Register</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="/static/files/bootstrap.css" type="text/css">
+	<link rel="stylesheet" href="/static/files/animate.css" type="text/css">
+	<link rel="stylesheet" href="/static/files/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="/static/files/simple-line-icons.css" type="text/css">
+	<link rel="stylesheet" href="/static/files/font.css" type="text/css">
+	<link rel="stylesheet" href="/static/files/app.css" type="text/css">
+	<link rel="stylesheet" href="/static/files/toastr.min.css" type="text/css">
+	<script src="/static/files/jquery.min.js"></script>
+	<style>
+	input:-webkit-autofill {
+		  -webkit-box-shadow: 0 0 0px 1000px white inset;
+		  -webkit-text-fill-color: #333;
+	}
+	</style>
+</head>
+	<style type="text/css">embed[type*="application/x-shockwave-flash"],embed[src*=".swf"],object[type*="application/x-shockwave-flash"],object[codetype*="application/x-shockwave-flash"],object[src*=".swf"],object[codebase*="swflash.cab"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"],object[classid*="d27cdb6e-ae6d-11cf-96b8-444553540000"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"]{	display: none !important;}</style>
+	<body>
+		<div class="app app-header-fixed "> 
+		    <div class="container w-xxl w-auto-xs" ng-controller="SignupFormController" ng-init="app.settings.container = false;">
+				<span class="navbar-brand block m-t">UPN</span>
+				<div class="m-b-lg">
+				<form method="post" class="form-validation">
+					<div class="text-danger wrapper text-center" ng-show="authError"></div>
+					<div class="list-group list-group-sm">
+						<div class="list-group-item">
+							<input id="username" name="username" type="text" placeholder="Enter user name here, length between 4-16" class="form-control no-border">
+						</div>
+						<div class="list-group-item">
+							<input type="password" style="display:none">
+							<input id="password" name="password" type="password" placeholder="Enter password here, length between 6-21" class="form-control no-border">
+						</div>
+						<div class="list-group-item">
+							<input id="repassword" name="repassword" type="password" placeholder="Input Password Again" class="form-control no-border">
+						</div>
+						<div class="list-group-item">
+							<input type="password" style="display:none">
+							<input name="email" type="text" id="email" placeholder="E-mail" class="form-control no-border">
+						</div>
+						<div class="list-group-item">
+							<input class="btn btn-lg btn-primary btn-block" type="submit" value="Sign Up" />
+						</div>
+						<div class="line line-dashed"></div>
+						<p class="text-center"><small>Already Have An Account?</small></p>
+						<a href="http://localhost:8080/signin" ui-sref="access.signin" class="btn btn-lg btn-default btn-block">Sign In Now</a>
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

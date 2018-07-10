@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>UPN - Contorl Panel</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="/static/files/bootstrap.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/animate.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/font-awesome.min.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/simple-line-icons.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/font.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/app.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/toastr.min.css" type="text/css">
+		<script src="/static/files/jquery.min.js"></script>
+	</head>
+	<style type="text/css">embed[type*="application/x-shockwave-flash"],embed[src*=".swf"],object[type*="application/x-shockwave-flash"],object[codetype*="application/x-shockwave-flash"],object[src*=".swf"],object[codebase*="swflash.cab"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"],object[classid*="d27cdb6e-ae6d-11cf-96b8-444553540000"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"]{	display: none !important;}</style>
+	<body>
+		<div class="app app-header-fixed ">
+			<header id="header" class="app-header navbar" role="menu">
+				<div class="navbar-header bg-dark">
+					<a class="navbar-brand text-lt">
+						<span class="hidden-folded m-l-xs">UPN</span>
+					</a>
+				</div>
+				<div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only">
+					<div class="nav navbar-nav hidden-xs">
+						<a class="btn no-shadow navbar-btn" ui-toggle="app-aside-folded" target=".app">
+							<i class="glyphicon glyphicon-align-justify"></i>
+						</a>
+					</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a data-toggle="dropdown" class="dropdown-toggle clear">
+							<span class="hidden-sm hidden-md" style="text-transform:uppercase;">Welcome Back: $context.get('uname') </span><b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu animated fadeInRight w">
+							<li>
+								<a href="/logout">Log Out</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				</div>
+			</header>
+		<aside id="aside" class="app-aside hidden-xs bg-dark">
+			<div class="aside-wrap">
+				<div class="navi-wrap">
+					<nav ui-nav="" class="navi clearfix">
+						<ul class="nav">
+							<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+								<span>Navigation</span>
+							</li>
+							<li>
+							<a href="http://localhost:8080/index">
+								<i class="glyphicon glyphicon-home icon text-primary-dker"></i>
+								<span class="font-bold">Control Panel</span>
+							</a>
+							</li>
+							<li>
+								<a href="http://localhost:8080/pay">
+									<i class="glyphicon glyphicon-credit-card icon text-info-lter"></i>
+									<span class="font-bold">Payment</span>
+								</a>
+							</li>
+							<li class="line dk"></li>
+								<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+									<span>Service</span>
+								</li>
+							<li>
+								<a href="http://localhost:8080/management">
+									<i class="glyphicon glyphicon-send" aria-hidden="true"></i>
+									<span>Management</span>
+								</a>
+							</li>
+							<li>
+								<a href="http://localhost:8080/shopping">
+									<i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
+									<span>Shopping</span>
+								</a>
+							</li>
+							<li class="line dk hidden-folded"></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</aside>
+		<div id="content" class="app-content" role="main">
+			<div class="app-content-body">
+				<div class="bg-light lter b-b wrapper-md hidden-print">
+					<h1 class="m-n font-thin h3">Payment center</h1>
+				</div>
+				<div class="wrapper-md">
+				<div class="panel panel-default">
+				<div class="row row-sm">
+				<div class="col-sm-12">
+				<div class="col-lg-3"></div>
+				<div class="table-responsive">
+					<div class="table-responsive"></div>
+					<table width="100%" class="table"></table>
+					<table width="100%" class="table">
+						<tbody>
+							<tr>
+								<td>E-mail:</td>
+								<td>$context.get('uemail')</td>
+							</tr>
+							<tr>
+								<td>User Name:</td>
+								<td>$context.get('uname')</td>
+							</tr>
+							<tr>
+								<td>Balance:</td>
+								<td>$context.get('ubalance') ¥</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<ul class="nav nav-tabs"></ul>
+				<div class="form-group">
+					<div class="payment">
+						<div class="paytype" style="border: 1px solid #dee5e7;">
+							<label for="pay-text">
+								<div class="paytype-text">
+									<h5>Charge amount:</h5>
+									<p>Please input the amount you need to charge</p>
+								</div>
+								<form method="post" class="form-validation">
+									<div class="input-group" style="margin-left: 10px;">
+										<input type="text" name="paymoney" value="100" class="form-control" style="width: 70px;height: 34px;" onFocus="if(this.value=='100'){ this.value=''; }" onBlur="if (this.value==''){ this.value='100'; }">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Pay now!</button>
+										</span>
+									</div>
+								</form>
+							</label>
+						</div>
+					</div>
+				</div>
+				<style>
+					.payment {
+					    margin-bottom: 20px;
+					}
+					.payment .paytype {
+					    padding: 30px;
+					    background-position: top 30px right 30px;
+					    background-repeat: no-repeat;
+					}
+					.payment .paytype label {
+					display: block;
+					margin: 0;
+					padding: 0;
+					}
+					.payment .paytype label:after {
+					clear: both;
+					content: '';
+					display: table;
+					}
+					.payment .paytype:first-child {
+					    border-radius: 2px 2px 0 0;
+					    background-color: #EAF0F0;
+					}
+					.payment .paytype:last-child {
+					    border-radius: 0 0 4px 4px;
+					    background-color: #FFF;
+					}
+					.payment .paytype input {
+					float: right;
+					margin-top: 15px;
+					}
+					.payment .paytype button {
+					float: right;
+					margin-top: 15px !important;
+					margin-left: 10px;
+					}
+					.payment .paytype .paytype-text {
+					float: left;
+					}
+					.payment .paytype label h5 {
+					    font-size: 16px;
+					    font-weight: bold;
+					    margin-top: 0;
+					    letter-spacing: 2px;
+					}
+					.payment .paytype label h5 small {
+					    width: 45px;
+					    height: 19px;
+					    display: inline-block;
+					    background-size: 100%;
+					    background-repeat: no-repeat;
+					    vertical-align: middle;
+					    margin-left: 20px;
+					}
+					.payment .paytype label p {
+					    color: #788697;
+					    font-size: 14px;
+					    font-weight: 400;
+					    margin-bottom: 0;
+					}
+
+					.input-group {
+					  position: relative;
+					  display: table;
+					  border-collapse: separate;
+					  width: 1%;
+					  float: right;
+					}
+					.input-group .form-control {
+					  border-top-right-radius: 0;
+					  border-bottom-right-radius: 0;
+					  position: relative;
+					  z-index: 2;
+					  float: left;
+					  width: 100%;
+					  margin-bottom: 0;
+					  display: table-cell;
+					}
+					.input-group-btn {
+					  width: 1%;
+					  white-space: nowrap;
+					  vertical-align: middle;
+					}
+					.input-group-btn {
+					  position: relative;
+					  font-size: 0;
+					  width: 1%;
+					  vertical-align: middle;
+					  display: table-cell;
+					}
+					.input-group-btn > .btn {
+					  position: relative;
+					}
+					.input-group-btn > .btn + .btn {
+					  margin-left: -1px;
+					}
+					.input-group-btn > .btn:hover,
+					.input-group-btn > .btn:focus,
+					.input-group-btn > .btn:active {
+					  z-index: 2;
+					}
+					.input-group-btn:first-child > .btn,
+					.input-group-btn:first-child > .btn-group {
+					  margin-right: -1px;
+					}
+					.input-group-btn:last-child > .btn,
+					.input-group-btn:last-child > .btn-group {
+					  margin-left: -1px;
+					}
+				</style>
+			<script src="/static/files/bootstrap.js"></script>
+			<script src="/static/files/ui-load.js"></script>
+			<script src="/static/files/ui-jp.config.js"></script>
+			<script src="/static/files/ui-jp.js"></script>
+			<script src="/static/files/ui-nav.js"></script>
+			<script src="/static/files/ui-toggle.js"></script>
+			<script src="/static/files/toastr.min.js"></script>
+		</div>
+		<script src="/static/files/jquery.sparkline.min.js"></script>
+	</body>
+</html>

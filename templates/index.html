@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>UPN - Contorl Panel</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="/static/files/bootstrap.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/animate.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/font-awesome.min.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/simple-line-icons.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/font.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/app.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/toastr.min.css" type="text/css">
+		<script src="/static/files/jquery.min.js"></script>
+	</head>
+	<style type="text/css">embed[type*="application/x-shockwave-flash"],embed[src*=".swf"],object[type*="application/x-shockwave-flash"],object[codetype*="application/x-shockwave-flash"],object[src*=".swf"],object[codebase*="swflash.cab"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"],object[classid*="d27cdb6e-ae6d-11cf-96b8-444553540000"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"]{	display: none !important;}</style>
+	<body>
+		<div class="app app-header-fixed ">
+			<header id="header" class="app-header navbar" role="menu">
+				<div class="navbar-header bg-dark">
+					<a class="navbar-brand text-lt">
+						<span class="hidden-folded m-l-xs">UPN</span>
+					</a>
+				</div>
+				<div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only">
+					<div class="nav navbar-nav hidden-xs">
+						<a class="btn no-shadow navbar-btn" ui-toggle="app-aside-folded" target=".app">
+							<i class="glyphicon glyphicon-align-justify"></i>
+						</a>
+					</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a data-toggle="dropdown" class="dropdown-toggle clear">
+							<span class="hidden-sm hidden-md" style="text-transform:uppercase;">Welcome Back: $context.get('uname') </span><b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu animated fadeInRight w">
+							<li>
+								<a href="/logout">Log Out</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				</div>
+			</header>
+		<aside id="aside" class="app-aside hidden-xs bg-dark">
+			<div class="aside-wrap">
+				<div class="navi-wrap">
+					<nav ui-nav="" class="navi clearfix">
+					<ul class="nav">
+						<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+							<span>Navigation</span>
+						</li>
+						<li>
+						<a href="http://localhost:8080/index">
+							<i class="glyphicon glyphicon-home icon text-primary-dker"></i>
+							<span class="font-bold">Control Panel</span>
+						</a>
+						</li>
+						<li>
+							<a href="http://localhost:8080/pay">
+								<i class="glyphicon glyphicon-credit-card icon text-info-lter"></i>
+								<span class="font-bold">Payment</span>
+							</a>
+						</li>
+						<li class="line dk"></li>
+							<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+								<span>Service</span>
+							</li>
+						<li>
+							<a href="http://localhost:8080/management">
+								<i class="glyphicon glyphicon-send" aria-hidden="true"></i>
+								<span>Management</span>
+							</a>
+						</li>
+						<li>
+							<a href="http://localhost:8080/shopping">
+								<i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
+								<span>Shopping</span>
+							</a>
+						</li>
+						<li class="line dk hidden-folded"></li>
+					</ul>
+					</nav>
+				</div>
+			</div>
+		</aside>
+		<div id="content" class="app-content" role="main">
+		<div class="app-content-body">
+			<div class="col">
+				<div class="wrapper-md" ng-controller="FlotChartDemoCtrl">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<div class="clearfix">
+										<div class="clear">
+											<div class="h3 m-t-xs m-b-xs" style="text-transform:uppercase;"><a name="name">$context.get('uname')</a></div>
+											<small class="text-muted" name="email">E-mail：$context.get('uemail')</small>
+											<p class="text-muted" name="balance">Balance：$context.get('ubalance') ¥</p>
+										</div>
+									</div>
+								</div>
+								<div class="list-group no-radius alt">
+									<a href="http://localhost:8080/management" class="list-group-item">
+										<i class="glyphicon glyphicon-send" aria-hidden="true"></i> Management
+									</a>
+									<a href="http://localhost:8080/pay" class="list-group-item">
+										<i class="glyphicon glyphicon-credit-card icon text-info-lter"></i> Payment</a>
+									<a href="http://localhost:8080/shopping" class="list-group-item">
+										<i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i></i> Shopping
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="/static/files/bootstrap.js"></script>
+		<script src="/static/files/ui-load.js"></script>
+		<script src="/static/files/ui-jp.config.js"></script>
+		<script src="/static/files/ui-jp.js"></script>
+		<script src="/static/files/ui-nav.js"></script>
+		<script src="/static/files/ui-toggle.js"></script>
+		<script src="/static/files/toastr.min.js"></script>
+		</div></div><footer>
+		</footer><script src="/static/files/jquery.sparkline.min.js"></script>
+	</body>
+</html>

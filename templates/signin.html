@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Sign In</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="/static/files/bootstrap.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/animate.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/font-awesome.min.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/simple-line-icons.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/font.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/app.css" type="text/css">
+		<link rel="stylesheet" href="/static/files/toastr.min.css" type="text/css">
+		<script src="/static/files/jquery.min.js"></script>
+		<style>
+		input:-webkit-autofill {
+		      -webkit-box-shadow: 0 0 0px 1000px white inset;
+			  -webkit-text-fill-color: #333;
+		}
+		</style>
+	</head>
+	<style type="text/css">embed[type*="application/x-shockwave-flash"],embed[src*=".swf"],object[type*="application/x-shockwave-flash"],object[codetype*="application/x-shockwave-flash"],object[src*=".swf"],object[codebase*="swflash.cab"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"],object[classid*="d27cdb6e-ae6d-11cf-96b8-444553540000"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"]{	display: none !important;}</style>
+	<body>
+		<div class="app app-header-fixed ">
+			<div class="container w-xxl w-auto-xs" ng-controller="SigninFormController" ng-init="app.settings.container = false;">
+				<span class="navbar-brand block m-t">UPN</span>
+				<div class="m-b-lg">
+					<div class="wrapper text-center">
+						<strong>You Will Sign In Here</strong>
+					</div>
+					<form class="form-validation" method="post">
+						<div class="list-group list-group-sm swaplogin">
+							<div class="list-group-item">
+								<input id="inputUsername" type="text" placeholder="Username" name="name" class="form-control no-border">
+							</div>
+							<div class="list-group-item">
+								<input id="inputPassword" type="password" placeholder="Password" name="pwd" class="form-control no-border">
+							</div>
+							<div class="list-group-item">
+								<button type="submit" class="btn btn-lg btn-primary btn-block">Sign In Now</button>
+							</div>
+							<div class="line line-dashed"></div>
+							<p class="text-center"><small>Do not have an account now?</small></p>
+							<a href="http://localhost:8080/register" ui-sref="access.signup" class="btn btn-lg btn-default btn-block">Sign Up Now</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
